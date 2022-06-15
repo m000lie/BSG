@@ -44,6 +44,16 @@ SPACE = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'space.p
 
 
 def draw_window(red, yellow, red_bullets, yellow_bullets, red_health, yellow_health):
+    """This is to draw the window environment.
+
+    Args:
+        red (pygame.Rect() object): Red spaceship
+        yellow (pygame.Rect() object): Yellow spaceship
+        red_bullets (List[pygame.Rect()]): List of pygame.Rect() objects for red spaceship bullets
+        yellow_bullets (List[pygame.Rect()]): List of pygame.Rect() objects for yellow spaceship bullets
+        red_health (int): Red Spaceship Health
+        yellow_health (int): Yellow Spaceship Health
+    """
     # WIN.fill(WHITE)
     WIN.blit(SPACE, (0, 0))
     pygame.draw.rect(WIN, BLACK, BORDER)
@@ -65,6 +75,12 @@ def draw_window(red, yellow, red_bullets, yellow_bullets, red_health, yellow_hea
 
 
 def yellow_movement_handler(keys_pressed, yellow):  # LEFT
+    """Movement handler for yellow spaceship
+
+    Args:
+        keys_pressed (List[bool]): List of bools representing the state of every key
+        yellow (pygame.Rect()): Yellow spaceship pygame.Rect() object
+    """
     if keys_pressed[pygame.K_a] and (yellow.x - VELOCITY) > 0:  # LEFT
         if keys_pressed[pygame.K_LSHIFT]:  # SPRINT
             yellow.x -= VELOCITY + 1
@@ -164,6 +180,7 @@ def main():
                     bullet = pygame.Rect(red.x, red.y + ((red.height // 2) - 2), 10, 5)
                     red_bullets.append(bullet)
                     BULLET_FIRE_SOUND.play()
+
 
             if event.type == RED_HIT:
                 red_health -= 1
